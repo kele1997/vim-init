@@ -20,6 +20,10 @@ if !exists('g:bundle_group')
 endif
 
 
+
+
+
+
 "----------------------------------------------------------------------
 " 计算当前 vim-init 的子路径
 "----------------------------------------------------------------------
@@ -311,10 +315,12 @@ if index(g:bundle_group, 'nerdtree') >= 0
 	let g:NERDTreeMinimalUI = 1
 	let g:NERDTreeDirArrows = 1
 	let g:NERDTreeHijackNetrw = 0
-	noremap <space>nn :NERDTree<cr>
+	let g:NERDTreeWinPos = "right"
+	" noremap <space>nn :NERDTree<cr>
 	noremap <space>no :NERDTreeFocus<cr>
 	noremap <space>nm :NERDTreeMirror<cr>
-	noremap <space>nt :NERDTreeToggle<cr>
+	" noremap <space>nt :NERDTreeToggle<cr>
+	noremap <space>nn :NERDTreeToggle<cr>
 endif
 
 
@@ -519,6 +525,30 @@ endif
 
 
 "----------------------------------------------------------------------
+" 安装自定义插件
+"----------------------------------------------------------------------
+
+Plug 'junegunn/vim-easy-align'
+
+let g:go_echo_go_info=0
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
+Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' }
+Plug 'Yggdroot/indentLine'
+Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
+Plug 'skywind3000/asyncrun.vim'
+Plug 'skywind3000/vim-terminal-help'
+
+
+
+let g:AutoPairsShortcutToggle = ''
+let g:AutoPairsShortcutFastWrap = ''
+let g:AutoPairsShortcutJump = ''
+let g:AutoPairsShortcutBackInsert = ''
+Plug 'jiangmiao/auto-pairs'
+
+
+"----------------------------------------------------------------------
 " 结束插件安装
 "----------------------------------------------------------------------
 call plug#end()
@@ -530,6 +560,11 @@ call plug#end()
 "----------------------------------------------------------------------
 
 " 禁用预览功能：扰乱视听
+let g:ycm_add_preview_to_completeopt = 0
+
+" 禁用 ycm 函数 help 功能
+let g:ycm_disable_signature_help = 1
+let g:ycm_auto_hover=-1
 let g:ycm_add_preview_to_completeopt = 0
 
 " 禁用诊断功能：我们用前面更好用的 ALE 代替
