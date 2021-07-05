@@ -1,3 +1,6 @@
+" File              : init-plugins.vim
+" Date              : 05.07.2021
+" Last Modified Date: 05.07.2021
 "======================================================================
 "
 " init-plugins.vim - 
@@ -542,6 +545,11 @@ Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/vim-terminal-help'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
+"
+let g:header_auto_add_header=0
+let g:header_field_author = "kele1997"
+let g:header_field_author_email = "fengxiaokun97@foxmail.com"
+Plug 'alpertuna/vim-header'
 
 
 let g:AutoPairsShortcutToggle = ''
