@@ -190,6 +190,7 @@ endif
 "----------------------------------------------------------------------
 if index(g:bundle_group, 'tags') >= 0
 
+	let g:gutentags_exclude_filetypes = ["markdown"]
 	" 提供 ctags/gtags 后台数据库自动更新功能
 	Plug 'ludovicchabant/vim-gutentags'
 
@@ -322,7 +323,7 @@ if index(g:bundle_group, 'nerdtree') >= 0
 	" noremap <space>nn :NERDTree<cr>
 	noremap <space>no :NERDTreeFocus<cr>
 	noremap <space>nm :NERDTreeMirror<cr>
-	" noremap <space>nt :NERDTreeToggle<cr>
+	noremap <space>nt :NERDTreeToggle<cr>
 	noremap <space>nn :NERDTreeToggle<cr>
 endif
 
@@ -439,11 +440,11 @@ if index(g:bundle_group, 'leaderf') >= 0
 		" CTRL+n 打开最近使用的文件 MRU，进行模糊匹配
 		noremap <c-n> :LeaderfMru<cr>
 
-		" ALT+p 打开函数列表，按 i 进入模糊匹配，ESC 退出
-		noremap <m-p> :LeaderfFunction!<cr>
+		" ALT+p 打开函数列表，按 i 进入模糊匹配，ESC 退出 ! or not !
+		noremap <m-p> :LeaderfFunction<cr>
 
-		" ALT+SHIFT+p 打开 tag 列表，i 进入模糊匹配，ESC退出
-		noremap <m-P> :LeaderfBufTag!<cr>
+		" ALT+SHIFT+p 打开 tag 列表，i 进入模糊匹配，ESC退出 ! or not !
+		noremap <m-P> :LeaderfBufTag<cr>
 
 		" ALT+n 打开 buffer 列表进行模糊匹配
 		noremap <m-n> :LeaderfBuffer<cr>
@@ -532,6 +533,7 @@ endif
 " 安装自定义插件
 "----------------------------------------------------------------------
 
+Plug 'vim-scripts/DrawIt'
 Plug 'junegunn/vim-easy-align'
 
 let g:go_echo_go_info=0
@@ -539,12 +541,16 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
 
 let g:ycm_confirm_extra_conf = 0
-Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer' }
+" 'commit':'d98f896'  
+" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer'}
 Plug 'Yggdroot/indentLine'
 Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
 Plug 'skywind3000/asyncrun.vim'
 Plug 'skywind3000/vim-terminal-help'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+
+let g:coc_sources_disable_map = { 'markdown': ['around']  }
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 "
 let g:header_auto_add_header=0
 let g:header_field_author = "kele1997"
@@ -558,6 +564,15 @@ let g:AutoPairsShortcutJump = ''
 let g:AutoPairsShortcutBackInsert = ''
 Plug 'jiangmiao/auto-pairs'
 
+
+
+if executable('ag')
+  let g:ackprg = 'ag --vimgrep'
+endif
+Plug 'mileszs/ack.vim'
+
+
+Plug 'plasticboy/vim-markdown'
 
 "----------------------------------------------------------------------
 " 结束插件安装
