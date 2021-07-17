@@ -17,9 +17,11 @@
 " 默认情况下的分组，可以再前面覆盖之
 "----------------------------------------------------------------------
 if !exists('g:bundle_group')
-	let g:bundle_group = ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
+	let g:bundle_group = [] 
+	let g:bundle_group += ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
+	let g:bundle_group += ['custom']
 endif
 
 
@@ -531,47 +533,57 @@ endif
 
 "----------------------------------------------------------------------
 " 安装自定义插件
-"----------------------------------------------------------------------
+" ----------------------------------------------------------------------
+if index(g:bundle_group, 'custom') >= 0
+	Plug 'vim-scripts/DrawIt'
+	Plug 'junegunn/vim-easy-align'
 
-Plug 'vim-scripts/DrawIt'
-Plug 'junegunn/vim-easy-align'
+	let g:go_echo_go_info=0
+	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+	Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
 
-let g:go_echo_go_info=0
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-Plug 'rdnetto/YCM-Generator', { 'branch': 'stable'  }
-
-let g:ycm_confirm_extra_conf = 0
-" 'commit':'d98f896'  
-" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer'}
-Plug 'Yggdroot/indentLine'
-Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
-Plug 'skywind3000/asyncrun.vim'
-Plug 'skywind3000/vim-terminal-help'
-
-
-let g:coc_sources_disable_map = { 'markdown': ['around']  }
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-"
-let g:header_auto_add_header=0
-let g:header_field_author = "kele1997"
-let g:header_field_author_email = "fengxiaokun97@foxmail.com"
-Plug 'alpertuna/vim-header'
-
-
-let g:AutoPairsShortcutToggle = ''
-let g:AutoPairsShortcutFastWrap = ''
-let g:AutoPairsShortcutJump = ''
-let g:AutoPairsShortcutBackInsert = ''
-Plug 'jiangmiao/auto-pairs'
+	let g:ycm_confirm_extra_conf = 0
+	" 'commit':'d98f896'  
+	" Plug 'ycm-core/YouCompleteMe', { 'do': './install.py --clang-completer --go-completer'}
+	"
+	"
+	"
+	let g:indentLine_fileTypeExclude = ['markdown', 'json']
+	let g:indentLine_char_list = ['|', '¦', '┆', '┊']
+	Plug 'Yggdroot/indentLine'
+	Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }
+	Plug 'skywind3000/asyncrun.vim'
+	Plug 'skywind3000/vim-terminal-help'
 
 
 
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
+	" 避免 coc 在 markdown 文本中使用 around 补全，造成卡顿
+	let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-snippets', 
+				\ 'coc-go', 'coc-cmake', 'coc-clangd']
+	let g:coc_sources_disable_map = { 'markdown': ['around']  }
+	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	"
+	let g:header_auto_add_header=0
+	let g:header_field_author = "kele1997"
+	let g:header_field_author_email = "fengxiaokun97@foxmail.com"
+	Plug 'alpertuna/vim-header'
+
+
+	" let g:AutoPairsShortcutToggle = ''
+	" let g:AutoPairsShortcutFastWrap = ''
+	" let g:AutoPairsShortcutJump = ''
+	" let g:AutoPairsShortcutBackInsert = ''
+	" Plug 'jiangmiao/auto-pairs'
+
+
+	if executable('ag')
+	  let g:ackprg = 'ag --vimgrep'
+	endif
+	Plug 'mileszs/ack.vim'
+
+
+	Plug 'plasticboy/vim-markdown'
 endif
-Plug 'mileszs/ack.vim'
-
-
 Plug 'plasticboy/vim-markdown'
 
 "----------------------------------------------------------------------
