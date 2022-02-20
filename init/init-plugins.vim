@@ -19,7 +19,8 @@
 if !exists('g:bundle_group')
 	let g:bundle_group = [] 
 	let g:bundle_group += ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
-	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
+	" let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
+	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'echodoc']
 	let g:bundle_group += ['leaderf']
 	let g:bundle_group += ['custom']
 endif
@@ -537,6 +538,7 @@ endif
 if index(g:bundle_group, 'custom') >= 0
 	Plug 'vim-scripts/DrawIt'
 	Plug 'junegunn/vim-easy-align'
+	Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 	let g:go_echo_go_info=0
 	Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
@@ -548,7 +550,10 @@ if index(g:bundle_group, 'custom') >= 0
 	"
 	"
 	"
-	let g:indentLine_fileTypeExclude = ['markdown', 'json']
+	let g:indentLine_fileTypeExclude = ['text', 'markdown']
+	let g:indentLine_fileTypeExclude = ['markdown', 'json', 'md']
+	let g:indentLine_conceallevel  = &conceallevel
+	let g:indentLine_concealcursor = &concealcursor
 	let g:indentLine_char_list = ['|', '¦', '┆', '┊']
 	Plug 'Yggdroot/indentLine'
 	Plug 'Yggdroot/LeaderF', { 'do': ':LeaderfInstallCExtension'  }

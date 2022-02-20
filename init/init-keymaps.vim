@@ -330,4 +330,5 @@ else
 				\ '<root>' <cr>
 endif
 
+noremap <leader>toc :Leaderf! line --regexMode --left --input #<CR>
 
