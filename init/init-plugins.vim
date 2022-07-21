@@ -19,10 +19,9 @@
 if !exists('g:bundle_group')
 	let g:bundle_group = [] 
 	let g:bundle_group += ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
-	" let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
-	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'echodoc']
+	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
-	let g:bundle_group += ['custom']
+	let g:bundle_group += ['custom', 'pinyin']
 endif
 
 
@@ -303,9 +302,8 @@ if index(g:bundle_group, 'airline') >= 0
 	let g:airline_right_alt_sep = ''
 	let g:airline_powerline_fonts = 0
 	let g:airline_exclude_preview = 1
-	let g:airline_section_b = '%n'
 	let g:airline_theme='deus'
-	let g:airline#extensions#branch#enabled = 0
+	let g:airline#extensions#branch#enabled = 1
 	let g:airline#extensions#syntastic#enabled = 0
 	let g:airline#extensions#fugitiveline#enabled = 0
 	let g:airline#extensions#csv#enabled = 0
@@ -323,6 +321,7 @@ if index(g:bundle_group, 'nerdtree') >= 0
 	let g:NERDTreeDirArrows = 1
 	let g:NERDTreeHijackNetrw = 0
 	let g:NERDTreeWinPos = "right"
+	let g:NERDTreeWinSize=25
 	" noremap <space>nn :NERDTree<cr>
 	noremap <space>no :NERDTreeFocus<cr>
 	noremap <space>nm :NERDTreeMirror<cr>
@@ -588,8 +587,21 @@ if index(g:bundle_group, 'custom') >= 0
 
 
 	Plug 'plasticboy/vim-markdown'
+
+	" org-mode 相关
+	Plug 'tpope/vim-speeddating'
+	Plug 'mattn/calendar-vim'
+	Plug 'majutsushi/tagbar'
 endif
-Plug 'plasticboy/vim-markdown'
+
+if index(g:bundle_group, 'pinyin') >= 0
+	Plug 'ZSaberLv0/ZFVimIM'
+	Plug 'ZSaberLv0/ZFVimJob' " 可选, 用于提升词库加载性能
+	Plug 'ZSaberLv0/ZFVimGitUtil' " 可选, 如果你希望定期自动清理词库 push 历史
+	Plug 'kele1997/ZFVimIM_pinyin' " 你的词库
+	Plug 'ZSaberLv0/ZFVimIM_openapi' " 可选, 百度云输入法
+
+endif
 
 "----------------------------------------------------------------------
 " 结束插件安装
