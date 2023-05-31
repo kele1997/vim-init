@@ -21,7 +21,7 @@ if !exists('g:bundle_group')
 	let g:bundle_group += ['basic', 'tags', 'enhanced', 'filetypes', 'textobj']
 	let g:bundle_group += ['tags', 'airline', 'nerdtree', 'ale', 'echodoc']
 	let g:bundle_group += ['leaderf']
-	let g:bundle_group += ['custom', 'pinyin']
+	let g:bundle_group += ['custom']
 endif
 
 
@@ -415,15 +415,6 @@ if index(g:bundle_group, 'ale') >= 0
 endif
 
 
-"----------------------------------------------------------------------
-" echodoc：搭配 YCM/deoplete 在底部显示函数参数
-"----------------------------------------------------------------------
-if index(g:bundle_group, 'echodoc') >= 0
-	Plug 'Shougo/echodoc.vim'
-	set noshowmode
-	let g:echodoc#enable_at_startup = 1
-endif
-
 
 "----------------------------------------------------------------------
 " LeaderF：CtrlP / FZF 的超级代替者，文件模糊匹配，tags/函数名 选择
@@ -536,6 +527,7 @@ endif
 " ----------------------------------------------------------------------
 if index(g:bundle_group, 'custom') >= 0
 	Plug 'vim-scripts/DrawIt'
+	Plug 'gyim/vim-boxdraw'
 	Plug 'junegunn/vim-easy-align'
 	Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
@@ -562,10 +554,10 @@ if index(g:bundle_group, 'custom') >= 0
 
 
 	" 避免 coc 在 markdown 文本中使用 around 补全，造成卡顿
-	let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-snippets', 
-				\ 'coc-go', 'coc-cmake', 'coc-clangd']
-	let g:coc_sources_disable_map = { 'markdown': ['around']  }
 	Plug 'neoclide/coc.nvim', {'branch': 'release'}
+	let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-snippets', 
+				\ 'coc-go', 'coc-cmake', 'coc-clangd', 'coc-pyright']
+	let g:coc_sources_disable_map = { 'markdown': ['around']  }
 	"
 	let g:header_auto_add_header=0
 	let g:header_field_author = "kele1997"
